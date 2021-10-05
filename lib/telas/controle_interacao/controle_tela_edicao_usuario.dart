@@ -41,13 +41,13 @@ class ControleTelaEdicacaoUsuario {
     streamController.add(usuario_logado);
 
     if(usuario != null) {
-      controlador_nome.text = usuario.nome;
-      controlador_login.text = usuario.login;
-      controlador_senha.text = usuario.senha;
-      controlador_endereco.text = usuario.endereco;
+      controlador_nome.text = usuario.nome!;
+      controlador_login.text = usuario.login!;
+      controlador_senha.text = usuario.senha!;
+      controlador_endereco.text = usuario.endereco!;
       tipo_usuario_selecionado = usuario.tipo;
       if (usuario.urlFoto != null){
-        imagem = await GerenciadoraArquivo.obterImagem(usuario.urlFoto);
+        imagem = await GerenciadoraArquivo.obterImagem(usuario.urlFoto!);
       }
     } else {
       // Se é usuário novo
@@ -67,7 +67,7 @@ class ControleTelaEdicacaoUsuario {
         if (usuario.urlFoto != null){
           // Se houve troca de foto
           if (imagem.path != usuario.urlFoto){
-            GerenciadoraArquivo.excluirArquivo(usuario.urlFoto);
+            GerenciadoraArquivo.excluirArquivo(usuario.urlFoto!);
             usuario.urlFoto = await GerenciadoraArquivo.salvarImagem(imagem);
           }
           // Se não havia foto é necessário salvá-la

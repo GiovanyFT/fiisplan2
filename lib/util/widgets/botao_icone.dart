@@ -22,7 +22,8 @@ class BotaoIcone extends StatelessWidget {
     return Container(
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.blue,
+          primary: this.cor,
+          onPrimary: Colors.black,
           shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(10.0)),
         ),

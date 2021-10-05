@@ -34,12 +34,12 @@ class _GraficoPizzaState extends State<GraficoPizza> {
     const Color(0xffFF00FF),
   ];
 
-  late int touchedIndex;
-  late double valor_total;
+  int touchedIndex = 0;
+  double valor_total = 0;
 
-  late String _item;
-  late String _porcentagem;
-  late String _valor;
+  String? _item = null;
+  String? _porcentagem = null;
+  String? _valor = null;
 
   _gerarIndicators(int indice_inicial, int quantidade) {
     List<Container> indicators = <Container>[];

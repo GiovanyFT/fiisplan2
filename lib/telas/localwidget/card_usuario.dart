@@ -21,7 +21,7 @@ class CardUsuario extends StatelessWidget {
             child: usuario.urlFoto == null
                 ? Image.asset("assets/icon/icone_aplicacao.png",
                     fit: BoxFit.contain)
-                : _obterImagem(usuario.urlFoto),
+                : _obterImagem(usuario.urlFoto!),
           ),
           Container(
             alignment: Alignment.bottomCenter,
@@ -38,7 +38,7 @@ class CardUsuario extends StatelessWidget {
                 children: <Widget>[
                   Flexible(
                     child: Text(
-                      usuario.nome,
+                      usuario.nome!,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

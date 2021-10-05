@@ -14,8 +14,8 @@ class MenuLateral extends StatelessWidget {
 
   UserAccountsDrawerHeader _header(ImageProvider imageProvider) {
     return UserAccountsDrawerHeader(
-      accountName: Text(usuario.nome),
-      accountEmail: Text(usuario.login),
+      accountName: Text(usuario.nome!),
+      accountEmail: Text(usuario.login!),
       currentAccountPicture: CircleAvatar(
         backgroundImage: imageProvider,
       ),
@@ -37,7 +37,7 @@ class MenuLateral extends StatelessWidget {
                   return Container();
                 }
                 else if (usuario.urlFoto != null){
-                  Future<File> future_arquivo = GerenciadoraArquivo.obterImagem(usuario.urlFoto);
+                  Future<File> future_arquivo = GerenciadoraArquivo.obterImagem(usuario.urlFoto!);
                   return FutureBuilder<File>(
                     future: future_arquivo,
                     builder: (context, snapshot) {

@@ -33,7 +33,7 @@ class ControleTelaAdministracaoUsuario{
       } else {
         Usuario usuario = usuarios.removeAt(index);
         if (usuario.urlFoto != null){
-          GerenciadoraArquivo.excluirArquivo(usuario.urlFoto);
+          GerenciadoraArquivo.excluirArquivo(usuario.urlFoto!);
         }
         FabricaControladora.obterUsuarioControl().removerUsuario(usuario);
         streamController.add(usuarios);

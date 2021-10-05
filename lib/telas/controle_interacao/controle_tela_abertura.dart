@@ -24,7 +24,7 @@ class ControleTelaAbertura{
     // Quando terminarem a aplicação ou vai para a tela de login
     // ou para a tela principal
     Future.wait([futureA, futureB, futureC]).then((List values) {
-      Usuario usuario = values[2];
+      Usuario? usuario = values[2];
 
       if(usuario != null){
         if (usuario.tipo == TipoUsuario.padrao) {

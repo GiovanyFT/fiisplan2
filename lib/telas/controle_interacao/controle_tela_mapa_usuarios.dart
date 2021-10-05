@@ -61,10 +61,10 @@ class ControleTelaMapaUsuarios{
     List<Marker> markers = <Marker>[];
     for (Usuario usuario in usuarios) {
       LatLng? latLng =
-      await Localizador.obterLatitudeLongitudePorEndereco(usuario.endereco);
+      await Localizador.obterLatitudeLongitudePorEndereco(usuario.endereco!);
       if (latLng != null) {
         BitmapDescriptor userIcon =
-        await obterBitmapDescriptor(usuario.urlFoto);
+        await obterBitmapDescriptor(usuario.urlFoto!);
         Marker marker = Marker(
           markerId: MarkerId(usuario.id.toString()),
           position: latLng,

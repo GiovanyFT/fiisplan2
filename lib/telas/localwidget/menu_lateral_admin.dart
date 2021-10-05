@@ -14,8 +14,8 @@ class MenuLateralAdmin extends StatelessWidget {
 
   UserAccountsDrawerHeader _header(ImageProvider imageProvider) {
     return UserAccountsDrawerHeader(
-      accountName: Text(usuario.nome),
-      accountEmail: Text(usuario.login),
+      accountName: Text(usuario.nome!),
+      accountEmail: Text(usuario.login!),
       currentAccountPicture: CircleAvatar(
         backgroundImage: imageProvider,
       ),
@@ -75,7 +75,7 @@ class MenuLateralAdmin extends StatelessWidget {
         pop(context);
 
         // Salvando o banco de dados na nuvem
-        DataBaseStorage.buscarBDDoStorage(usuario.login);
+        DataBaseStorage.buscarBDDoStorage(usuario.login!);
 
         // Sobrescrevendo a tela de Login
         push(context, TelaLogin(), replace: true);
@@ -97,7 +97,7 @@ class MenuLateralAdmin extends StatelessWidget {
         pop(context);
 
         // Salvando o banco de dados na nuvem
-        DataBaseStorage.enviarBDParaStorage(usuario.login);
+        DataBaseStorage.enviarBDParaStorage(usuario.login!);
       },
     );
   }
@@ -126,7 +126,7 @@ class MenuLateralAdmin extends StatelessWidget {
           return Container();
         } else if (usuario.urlFoto != null) {
           Future<File> future_arquivo =
-              GerenciadoraArquivo.obterImagem(usuario.urlFoto);
+              GerenciadoraArquivo.obterImagem(usuario.urlFoto!);
           return FutureBuilder<File>(
               future: future_arquivo,
               builder: (context, snapshot) {

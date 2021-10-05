@@ -11,14 +11,14 @@ class DatabaseHelper {
   // Se o usuário usar DatabaseHelper() é a mesma coisa de fazer DatabaseHelper.getInstance()
   factory DatabaseHelper() => _instance;
 
-  static late Database _db;
+  static Database? _db = null;
 
   Future<Database> get db async {
     if (_db != null) {
-      return _db;
+      return _db!;
     }
     _db = await _initDb();
-    return _db;
+    return _db!;
   }
 
   Future _initDb() async {

@@ -20,7 +20,6 @@ class Botao extends StatelessWidget {
       height: 46,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: Colors.blue,
           shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(10.0)),
         ),

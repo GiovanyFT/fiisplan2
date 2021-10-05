@@ -11,15 +11,15 @@ class TipoUsuario{
 
 
 class Usuario extends Objeto{
-  late String nome;
-  late String tipo;
-  late String login;
-  late String senha;
-  late String endereco;
-  late String urlFoto;
+  String? nome;
+  String? tipo;
+  String? login;
+  String? senha;
+  String? endereco;
+  String? urlFoto;
 
 
-  Usuario({required this.nome, required this.tipo, required this.login, required this.senha, required this.endereco, required this.urlFoto});
+  Usuario({this.nome, this.tipo, this.login, this.senha, this.endereco, this.urlFoto});
 
 
   @override
