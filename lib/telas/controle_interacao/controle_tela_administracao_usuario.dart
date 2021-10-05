@@ -41,8 +41,8 @@ class ControleTelaAdministracaoUsuario{
     }
   }
 
-  void irParaTelaEdicaoUsuario(BuildContext context, Usuario usuario) async{
-    String s = await push(context, TelaEdicaoUsuario(usuario));
+  void irParaTelaEdicaoUsuario(BuildContext context, Usuario? usuario) async{
+    String s = await push(context, TelaEdicaoUsuario(usuario!));
     if (s == "Salvou"){
       buscarUsuarios();
     }

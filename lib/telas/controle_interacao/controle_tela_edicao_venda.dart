@@ -33,8 +33,8 @@ class ControleTelaEdicaoVenda{
     controlador_taxas.text = "";
   }
 
-  String? validarTaxas(String text) {
-    if (text.isEmpty) {
+  String? validarTaxas(String? text) {
+    if (text!.isEmpty) {
       return "O campo 'Taxas' está vazio e necessita ser preenchido";
     }
     try {

@@ -5,7 +5,7 @@ import 'package:fiisplan2/dominio/usuario.dart';
 import 'package:flutter/material.dart';
 
 class ControleTelaEdicaoFundoImobiliario {
-  FundoImobiliario fundo;
+  FundoImobiliario? fundo;
 
 
   ControleTelaEdicaoFundoImobiliario(this.fundo);
@@ -29,9 +29,9 @@ class ControleTelaEdicaoFundoImobiliario {
       controlador_nome.text = "";
       segmento_selecionado = SegmentoFundoImobiliario.agencias_bancarias;
     } else {
-      controlador_sigla.text = fundo.sigla;
-      controlador_nome.text = fundo.nome;
-      segmento_selecionado = fundo.segmento;
+      controlador_sigla.text = fundo!.sigla;
+      controlador_nome.text = fundo!.nome;
+      segmento_selecionado = fundo!.segmento;
     }
   }
 
@@ -47,18 +47,18 @@ class ControleTelaEdicaoFundoImobiliario {
       Future<Usuario?> future = Usuario.obter();
       future.then((Usuario? usuario) {
         if (usuario != null){
-          FabricaControladora.obterPatrimonioControl().criarNovoPatrimonio(fundo, usuario);
+          FabricaControladora.obterPatrimonioControl().criarNovoPatrimonio(fundo!, usuario);
         }
       });
 
 
       // Se for uma atualização
     } else {
-      fundo.sigla = controlador_sigla.text;
-      fundo.nome = controlador_nome.text;
-      fundo.segmento = segmento_selecionado;
+      fundo!.sigla = controlador_sigla.text;
+      fundo!.nome = controlador_nome.text;
+      fundo!.segmento = segmento_selecionado;
 
-      FabricaControladora.obterFundoImobiliarioControl().atualizarFundoImobiliario(fundo);
+      FabricaControladora.obterFundoImobiliarioControl().atualizarFundoImobiliario(fundo!);
     }
   }
 
