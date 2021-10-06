@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:fiisplan2/dominio/usuario.dart';
+import 'package:fiisplan2/util/gerenciadora_arquivo.dart';
 import 'package:fiisplan2/util/widgets/botao.dart';
 import 'package:fiisplan2/util/widgets/campo_edicao.dart';
 import 'package:fiisplan2/util/widgets/seletor_opcoes.dart';
@@ -164,7 +163,7 @@ class _TelaEdicaoUsuarioState extends State<TelaEdicaoUsuario> {
                         await ImagePicker().pickImage(source: ImageSource.camera);
                     if (image != null) {
                       setState(() {
-                        _controle.imagem = image as File;
+                        _controle.imagem = GerenciadoraArquivo.XFileToFile(image);
                       });
                     }
                   },
@@ -180,7 +179,7 @@ class _TelaEdicaoUsuarioState extends State<TelaEdicaoUsuario> {
                         source: ImageSource.gallery);
                     if (image != null) {
                       setState(() {
-                        _controle.imagem = image as File;
+                        _controle.imagem = GerenciadoraArquivo.XFileToFile(image);
                       });
                     }
                   },
