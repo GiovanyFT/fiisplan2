@@ -67,16 +67,12 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             },
           ),
           PopupMenuButton<String>(
-            onSelected: (String valor) {
-              push(context, TelaWebViewFundos(valor));
-            },
             icon: FaIcon(FontAwesomeIcons.chrome),
             itemBuilder: (BuildContext context) {
               return [
                 PopupMenuItem(
-                  value: "https://www.clubefii.com.br/fundo_imobiliario_lista",
                   child: TextButton(
-                    onPressed: () {  },
+                    onPressed: () { push(context, TelaWebViewFundos("https://www.clubefii.com.br/fundo_imobiliario_lista")); },
                     child: Text(
                       "Clube FII",
                       style: TextStyle(
@@ -86,9 +82,8 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                   ),
                 ),
                 PopupMenuItem(
-                  value: "https://fiis.com.br/lista-de-fundos-imobiliarios/",
                   child: TextButton(
-                    onPressed: () {  },
+                    onPressed: () { push(context, TelaWebViewFundos("https://fiis.com.br/lista-de-fundos-imobiliarios/")); },
                     child: Text(
                       "FIIs.com.br",
                       style: TextStyle(
@@ -98,9 +93,8 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                   ),
                 ),
                 PopupMenuItem(
-                  value: "https://www.fundsexplorer.com.br/funds",
                   child: TextButton(
-                    onPressed: () {  },
+                    onPressed: () { push(context, TelaWebViewFundos("https://www.fundsexplorer.com.br/funds")); },
                     child: Text(
                       "Fundsexplorer",
                       style: TextStyle(
