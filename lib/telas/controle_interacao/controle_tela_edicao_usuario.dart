@@ -34,7 +34,7 @@ class ControleTelaEdicacaoUsuario {
   final focus_botao_salvar = FocusNode();
 
   // Arquivo de imagem
-  late File imagem;
+  File? imagem;
 
   void inicializar() async{
     usuario_logado = (await Usuario.obter())!;
@@ -66,13 +66,13 @@ class ControleTelaEdicacaoUsuario {
         // Se já havia foto pode ser necessário apagá-la
         if (usuario.urlFoto != null){
           // Se houve troca de foto
-          if (imagem.path != usuario.urlFoto){
+          if (imagem!.path != usuario.urlFoto){
             GerenciadoraArquivo.excluirArquivo(usuario.urlFoto!);
-            usuario.urlFoto = await GerenciadoraArquivo.salvarImagem(imagem);
+            usuario.urlFoto = await GerenciadoraArquivo.salvarImagem(imagem!);
           }
           // Se não havia foto é necessário salvá-la
         } else {
-          usuario.urlFoto = await GerenciadoraArquivo.salvarImagem(imagem);
+          usuario.urlFoto = await GerenciadoraArquivo.salvarImagem(imagem!);
         }
       }
       // Se o usuário logado é o que está sendo salvo
@@ -90,7 +90,7 @@ class ControleTelaEdicacaoUsuario {
         tipo: tipo_usuario_selecionado!, urlFoto: '',
       );
       if(imagem != null){
-        usuario_novo.urlFoto = await GerenciadoraArquivo.salvarImagem(imagem);
+        usuario_novo.urlFoto = await GerenciadoraArquivo.salvarImagem(imagem!);
       }
       FabricaControladora.obterUsuarioControl().inserirUsuario(usuario_novo);
     }

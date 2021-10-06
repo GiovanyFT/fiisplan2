@@ -145,7 +145,7 @@ class _TelaEdicaoUsuarioState extends State<TelaEdicaoUsuario> {
         children: <Widget>[
           _controle.imagem != null
               ? Image.file(
-                  _controle.imagem,
+                  _controle.imagem!,
                   fit: BoxFit.cover,
                 )
               : Image.asset(
