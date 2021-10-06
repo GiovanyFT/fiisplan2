@@ -9,13 +9,30 @@ import '../tela_ajuda.dart';
 import '../tela_edicao_usuario.dart';
 import '../tela_login.dart';
 
-class MenuLateral extends StatelessWidget {
-  late Usuario usuario;
+class MenuLateral extends StatefulWidget {
+  const MenuLateral({Key? key}) : super(key: key);
+
+  @override
+  _MenuLateralState createState() => _MenuLateralState();
+}
+
+class _MenuLateralState extends State<MenuLateral> {
+  Usuario? usuario;
+  Future<Usuario>? future;
+
+  @override
+  void initState() {
+    super.initState();
+    // A criação do future DEVE ser feita aqui
+    // não pode ser feita no build
+    // (https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html)
+    future = Usuario.obterNaoNulo();
+  }
 
   UserAccountsDrawerHeader _header(ImageProvider imageProvider) {
     return UserAccountsDrawerHeader(
-      accountName: Text(usuario.nome!),
-      accountEmail: Text(usuario.login!),
+      accountName: Text(usuario!.nome!),
+      accountEmail: Text(usuario!.login!),
       currentAccountPicture: CircleAvatar(
         backgroundImage: imageProvider,
       ),
@@ -24,7 +41,6 @@ class MenuLateral extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future<Usuario>? future = Usuario.obter() as Future<Usuario>?;
     return SafeArea(
       child: Drawer(
         child: ListView(
@@ -32,24 +48,24 @@ class MenuLateral extends StatelessWidget {
             FutureBuilder<Usuario>(
               future: future,
               builder: (context, snapshot) {
-                usuario = snapshot.data!;
+                usuario = snapshot.data;
                 if (usuario == null){
                   return Container();
                 }
-                else if (usuario.urlFoto != null){
-                  Future<File> future_arquivo = GerenciadoraArquivo.obterImagem(usuario.urlFoto!);
+                else if (usuario!.urlFoto != null){
+                  Future<File> future_arquivo = GerenciadoraArquivo.obterImagem(usuario!.urlFoto!);
                   return FutureBuilder<File>(
-                    future: future_arquivo,
-                    builder: (context, snapshot) {
-                      if(!snapshot.hasData){
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
+                      future: future_arquivo,
+                      builder: (context, snapshot) {
+                        if(!snapshot.hasData){
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
 
-                      File? imagem = snapshot.data;
-                      return _header(FileImage(imagem!));
-                    }
+                        File? imagem = snapshot.data;
+                        return _header(FileImage(imagem!));
+                      }
                   );
                 } else {
                   return _header(AssetImage("assets/icon/icone_aplicacao.png"));
@@ -57,16 +73,16 @@ class MenuLateral extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.edit),
-              title: Text("Editar Dados do Usuário"),
-              subtitle: Text("nome, login, senha ..."),
-              trailing: Icon(Icons.arrow_forward),
-              onTap: () async {
-                // Fechando o menu lateral
-                pop(context);
+                leading: Icon(Icons.edit),
+                title: Text("Editar Dados do Usuário"),
+                subtitle: Text("nome, login, senha ..."),
+                trailing: Icon(Icons.arrow_forward),
+                onTap: () async {
+                  // Fechando o menu lateral
+                  pop(context);
 
-                push(context, TelaEdicaoUsuario(usuario));
-              }
+                  push(context, TelaEdicaoUsuario(usuario!));
+                }
             ),
             ListTile(
               leading: Icon(Icons.help),
@@ -101,3 +117,4 @@ class MenuLateral extends StatelessWidget {
     );
   }
 }
+

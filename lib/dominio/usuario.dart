@@ -77,4 +77,13 @@ class Usuario extends Objeto{
     return usuario;
   }
 
+  static Future<Usuario> obterNaoNulo() async{
+    String usuario_string = await Prefs.getString("user.prefs");
+
+    Map<String, dynamic> usuario_map = json.decode(usuario_string);
+
+    Usuario usuario = Usuario.fromMap(usuario_map);
+    return usuario;
+  }
+
 }

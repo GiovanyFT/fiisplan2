@@ -9,13 +9,27 @@ import '../../database_storage.dart';
 import '../tela_ajuda.dart';
 import '../tela_login.dart';
 
-class MenuLateralAdmin extends StatelessWidget {
-  late Usuario usuario;
+class MenuLateralAdmin extends StatefulWidget {
+  const MenuLateralAdmin({Key? key}) : super(key: key);
+
+  @override
+  _MenuLateralAdminState createState() => _MenuLateralAdminState();
+}
+
+class _MenuLateralAdminState extends State<MenuLateralAdmin> {
+  Usuario? usuario;
+  Future<Usuario>? future;
+
+  @override
+  void initState() {
+    super.initState();
+    future = Usuario.obterNaoNulo();
+  }
 
   UserAccountsDrawerHeader _header(ImageProvider imageProvider) {
     return UserAccountsDrawerHeader(
-      accountName: Text(usuario.nome!),
-      accountEmail: Text(usuario.login!),
+      accountName: Text(usuario!.nome!),
+      accountEmail: Text(usuario!.login!),
       currentAccountPicture: CircleAvatar(
         backgroundImage: imageProvider,
       ),
@@ -24,28 +38,26 @@ class MenuLateralAdmin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future<Usuario>? future = Usuario.obter() as Future<Usuario>?;
     return SafeArea(
       child: Drawer(
         child: ListView(
           children: Platform.isAndroid
               ? <Widget>[
-                  _cabecalho(future!),
-                  _ajuda(context),
-                  _backup(context),
-                  _restore(context),
-                  _sair(context)
-                ]
+            _cabecalho(future!),
+            _ajuda(context),
+            _backup(context),
+            _restore(context),
+            _sair(context)
+          ]
               : <Widget>[
-                  _cabecalho(future!),
-                  _ajuda(context),
-                  _sair(context),
-                ],
+            _cabecalho(future!),
+            _ajuda(context),
+            _sair(context),
+          ],
         ),
       ),
     );
   }
-
   ListTile _sair(BuildContext context) {
     return ListTile(
       leading: Icon(Icons.exit_to_app),
@@ -75,7 +87,7 @@ class MenuLateralAdmin extends StatelessWidget {
         pop(context);
 
         // Salvando o banco de dados na nuvem
-        DataBaseStorage.buscarBDDoStorage(usuario.login!);
+        DataBaseStorage.buscarBDDoStorage(usuario!.login!);
 
         // Sobrescrevendo a tela de Login
         push(context, TelaLogin(), replace: true);
@@ -97,7 +109,7 @@ class MenuLateralAdmin extends StatelessWidget {
         pop(context);
 
         // Salvando o banco de dados na nuvem
-        DataBaseStorage.enviarBDParaStorage(usuario.login!);
+        DataBaseStorage.enviarBDParaStorage(usuario!.login!);
       },
     );
   }
@@ -121,12 +133,12 @@ class MenuLateralAdmin extends StatelessWidget {
     return FutureBuilder<Usuario>(
       future: future,
       builder: (context, snapshot) {
-        usuario = snapshot.data!;
+        usuario = snapshot.data;
         if (usuario == null) {
           return Container();
-        } else if (usuario.urlFoto != null) {
+        } else if (usuario!.urlFoto != null) {
           Future<File> future_arquivo =
-              GerenciadoraArquivo.obterImagem(usuario.urlFoto!);
+          GerenciadoraArquivo.obterImagem(usuario!.urlFoto!);
           return FutureBuilder<File>(
               future: future_arquivo,
               builder: (context, snapshot) {
@@ -146,3 +158,4 @@ class MenuLateralAdmin extends StatelessWidget {
     );
   }
 }
+
