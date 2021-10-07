@@ -77,7 +77,7 @@ abstract class BaseDAO<T>{
       }
       sql += ' ${nomes_filtros[qt_filtros - 1]} = ?';
     }
-    return obterListaQueryBase(sql, valores!);
+    return obterListaQueryBase(sql, valores);
   }
 
   Future<List<T>>  obterListaQueryBase(String sql, [List<dynamic>? arguments] ) async{
