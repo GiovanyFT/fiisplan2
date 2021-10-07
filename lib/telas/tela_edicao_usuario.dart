@@ -10,7 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'controle_interacao/controle_tela_edicao_usuario.dart';
 
 class TelaEdicaoUsuario extends StatefulWidget {
-  Usuario usuario;
+  Usuario? usuario;
 
   TelaEdicaoUsuario(this.usuario);
 
