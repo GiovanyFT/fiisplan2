@@ -13,6 +13,7 @@ Project SDK
  */
 
 class DataBaseStorage {
+  // Caminho em celulares reais
   static final String diretorio_imagens = "/data/data/app.fiisplan.fiisplan2/app_flutter/";
   static final String banco = "/data/data/app.fiisplan.fiisplan2/databases/fundos.db";
 
@@ -46,7 +47,7 @@ class DataBaseStorage {
       // sem o restante do path
       storageReference = storageRef.child("${arquivos[i].path.substring(46)}");
       await storageReference.putFile(arquivos[i]);
-      urlFile = await storageReference.getDownloadURL();
+      await storageReference.getDownloadURL();
     }
     MensagemAlerta("Backup executado com sucesso!!!");
 
@@ -55,14 +56,10 @@ class DataBaseStorage {
   static Future<void> buscarBDDoStorage(String nome_arquivo) async {
     var storageRef = FirebaseStorage.instance.ref("/$nome_arquivo/");
     Reference storageReference = storageRef.child("$nome_arquivo.db");
-    TaskSnapshot task = (await storageReference.writeToFile(
-        File(banco))) ;
+    TaskSnapshot task = await storageReference.writeToFile(File(banco));
 
 
-/*
-    task.
-
-    whenComplete(() {
+    task.ref.listAll().then((value) {
       Future<List<Usuario>> future = FabricaControladora.obterUsuarioControl()
           .obterUsuarios();
       future.then((usuarios) async {
@@ -70,14 +67,12 @@ class DataBaseStorage {
         for (Usuario usuario in usuarios) {
           if (usuario.urlFoto != null) {
             String nome_foto = "${usuario.urlFoto!}";
-            String local_gravacao_imagem = "$diretorio_imagens$nome_foto";
-            print("LOCAL DE GRAVAÇÃO DA IMAGEM :$local_gravacao_imagem");
-            storageReference = storageRef.child(nome_foto);
+            String local_gravacao_imagem = "$diretorio_imagens${nome_foto.substring(48)}";
+            storageReference = storageRef.child(nome_foto.substring(48));
             await storageReference.writeToFile(File(local_gravacao_imagem));
           }
         };
       });
     });
-  */
   }
 }
