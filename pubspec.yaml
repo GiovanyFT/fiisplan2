@@ -52,6 +52,7 @@ dependencies:
   # Mapas
   google_maps_flutter: ^2.0.11
   # Endereço para Coordenadas
+  geocoding: ^2.0.1
   # geocoder: ^0.2.1
   # Firebase Cloud Messaging
   firebase_messaging: ^10.0.8
