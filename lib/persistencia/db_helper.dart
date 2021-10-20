@@ -6,8 +6,10 @@ import 'package:sqflite/sqflite.dart';
 class DatabaseHelper {
   // Para garantir apenas uma instância (Singleton) de DatabaseHelper
   static final DatabaseHelper _instance = DatabaseHelper.getInstance();
+
   // Esse é um named contructor (que chama o construtor padrão alocando o objeto)
- DatabaseHelper.getInstance();
+  DatabaseHelper.getInstance();
+
   // Se o usuário usar DatabaseHelper() é a mesma coisa de fazer DatabaseHelper.getInstance()
   factory DatabaseHelper() => _instance;
 
@@ -26,7 +28,8 @@ class DatabaseHelper {
     String path = join(databasesPath, 'fundos.db');
     print("Database path ==> $path");
 
-    var db = await openDatabase(path, version: 2, onCreate: _onCreate, onUpgrade: _onUpgrade);
+    var db = await openDatabase(path,
+        version: 2, onCreate: _onCreate, onUpgrade: _onUpgrade);
     return db;
   }
 
@@ -44,39 +47,39 @@ class DatabaseHelper {
         'FOREIGN KEY(id_usuario) REFERENCES USUARIO(id))');
     await db.execute(
         'CREATE TABLE COMPRA (id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, data_transacao	TEXT, valor_cota REAL, '
-            'quantidade INTEGER, taxa REAL, '
-            'id_patrimonio INTEGER,'
-            'FOREIGN KEY(id_patrimonio) REFERENCES PATRIMONIO(id))');
+        'quantidade INTEGER, taxa REAL, '
+        'id_patrimonio INTEGER,'
+        'FOREIGN KEY(id_patrimonio) REFERENCES PATRIMONIO(id))');
     await db.execute(
         'CREATE TABLE VENDA (id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, data_transacao	TEXT, valor_cota REAL, '
-            'quantidade INTEGER, taxa REAL, '
-            'id_patrimonio INTEGER,'
-            'FOREIGN KEY(id_patrimonio) REFERENCES PATRIMONIO(id))');
+        'quantidade INTEGER, taxa REAL, '
+        'id_patrimonio INTEGER,'
+        'FOREIGN KEY(id_patrimonio) REFERENCES PATRIMONIO(id))');
     await db.execute(
         'CREATE TABLE DIVIDENDO (id	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE, data	TEXT, valor REAL, '
-            'id_patrimonio INTEGER,'
-            'FOREIGN KEY(id_patrimonio) REFERENCES PATRIMONIO(id))');
+        'id_patrimonio INTEGER,'
+        'FOREIGN KEY(id_patrimonio) REFERENCES PATRIMONIO(id))');
 
     await db.transaction((txn) async {
       int id2 = await txn.rawInsert(
           'INSERT INTO USUARIO(nome, tipo, login, senha, urlFoto, endereco) '
-              'VALUES("Teste", "Padrão", "teste@gmail.com", "123", null, "Rua Teste")');
+          'VALUES("Teste", "Padrão", "teste@gmail.com", "123", null, "Rua Teste")');
       print('inserted1: $id2');
 
       int id3 = await txn.rawInsert(
           'INSERT INTO USUARIO(nome, tipo, login, senha, urlFoto, endereco) '
-              'VALUES("Administrador", "Administrador", "admin", "admin", null, "Rua Pedro Epichin, 351, Colatina Velha, Colatina, ES")');
+          'VALUES("Administrador", "Administrador", "admin", "admin", null, "Rua Pedro Epichin, 351, Colatina Velha, Colatina, ES")');
       print('inserted1: $id3');
     });
 
-    if(version >= 2){
+    if (version >= 2) {
       await db.execute("alter table VENDA add valor_medio_compra REAL");
     }
   }
 
-  Future<FutureOr<void>> _onUpgrade(Database db, int oldVersion, int newVersion) async {
-
-    if(newVersion < 2) {
+  Future<FutureOr<void>> _onUpgrade(
+      Database db, int oldVersion, int newVersion) async {
+    if (newVersion < 2) {
       await db.execute("alter table VENDA add valor_medio_compra REAL");
     }
   }
