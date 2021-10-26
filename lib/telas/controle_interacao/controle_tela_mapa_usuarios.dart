@@ -46,7 +46,7 @@ class ControleTelaMapaUsuarios{
     );
   }
 
-  Future<BitmapDescriptor> obterBitmapDescriptor(String foto) async {
+  Future<BitmapDescriptor> obterBitmapDescriptor(String? foto) async {
     if (foto == null || foto == "") {
       return await GeradorBitmapDescriptor.gerarBitMapDescriptorFromAsset(
           'assets/icon/imagem_mapa.png', 100);
@@ -64,7 +64,7 @@ class ControleTelaMapaUsuarios{
       await Localizador.obterLatitudeLongitudePorEndereco(usuario.endereco!);
       if (latLng != null) {
         BitmapDescriptor userIcon =
-        await obterBitmapDescriptor(usuario.urlFoto!);
+        await obterBitmapDescriptor(usuario.urlFoto);
         Marker marker = Marker(
           markerId: MarkerId(usuario.id.toString()),
           position: latLng,
