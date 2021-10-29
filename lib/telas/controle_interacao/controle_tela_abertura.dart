@@ -20,7 +20,7 @@ class ControleTelaAbertura{
     // Obtendo o usuário logado (se houver)
     Future<Usuario?>  futureC = Usuario.obter();
 
-    // Agurandando as 3 operações terminarem
+    // Aguardando as 3 operações terminarem
     // Quando terminarem a aplicação ou vai para a tela de login
     // ou para a tela principal
     Future.wait([futureA, futureB, futureC]).then((List values) {
