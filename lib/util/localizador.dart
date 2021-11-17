@@ -12,6 +12,9 @@ class Localizador{
     } on NoResultFoundException {
       print("Endereço não encontrado");
       return null;
+    } on Exception catch (e) {
+      print("Erro desconhecido: $e");
+      return null;
     }
   }
 }
