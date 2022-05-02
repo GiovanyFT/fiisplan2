@@ -10,7 +10,7 @@ class DatabaseHelper {
   // Esse é um named contructor (que chama o construtor padrão alocando o objeto)
   DatabaseHelper._getInstance();
 
-  // Se o usuário usar DatabaseHelper() é a mesma coisa de fazer DatabaseHelper.getInstance()
+  // Se o usuário usar DatabaseHelper() é a mesma coisa de fazer DatabaseHelper._getInstance()
   factory DatabaseHelper() => _instance;
 
   static Database? _db = null;
