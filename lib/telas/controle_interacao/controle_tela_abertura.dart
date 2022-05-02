@@ -12,7 +12,7 @@ class ControleTelaAbertura{
   void inicializarAplicacao(BuildContext context) {
 
     // Inicializando o banco
-    Future futureA = DatabaseHelper.getInstance().db;
+    Future futureA = DatabaseHelper().db;
 
     // Dando um tempo para exibição da tela de abertura
     Future futureB = Future.delayed(Duration(seconds: 3));
