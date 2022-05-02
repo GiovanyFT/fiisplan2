@@ -10,7 +10,7 @@ abstract class BaseDAO<T>{
   // Obriga a definir um fromMap para o objeto específico
   T fromMap(Map<String, dynamic> map);
 
-  Future<Database> get db => DatabaseHelper.getInstance().db;
+  Future<Database> get db => DatabaseHelper().db;
 
   Future<int?> obterQuantidadeBase({List<String>? nomes_filtros = null, List? valores = null}) async{
     final dbClient = await db;
