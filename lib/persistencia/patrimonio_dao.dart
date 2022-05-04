@@ -38,14 +38,11 @@ class PatrimonioDAO extends BaseDAO<Patrimonio>{
       int id_fundo = await txn.rawInsert(
           'INSERT INTO FUNDO_IMOBILIARIO(sigla, nome, segmento) VALUES(?, ?, ?)',
           [sigla, nome, segmento]);
-      patrimonio.fundo.id = id_fundo;
-      print('inserted1: $id_fundo');
 
-      int id2 = await txn.rawInsert(
+      await txn.rawInsert(
           'INSERT INTO $nomeTabela(valor_medio, qt_cotas, id_fundo, id_usuario) '
               'VALUES(?, ?, ?, ?)',
            [ patrimonio.valor_medio, patrimonio.qt_cotas, id_fundo, patrimonio.usuario.id]);
-      print('inserted2: $id2');
     });
   }
 
