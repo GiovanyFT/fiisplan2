@@ -61,15 +61,14 @@ class DatabaseHelper {
         'FOREIGN KEY(id_patrimonio) REFERENCES PATRIMONIO(id))');
 
     await db.transaction((txn) async {
-      int id2 = await txn.rawInsert(
+      await txn.rawInsert(
           'INSERT INTO USUARIO(nome, tipo, login, senha, urlFoto, endereco) '
           'VALUES("Teste", "Padrão", "teste@gmail.com", "123", null, "Rua Teste")');
-      print('inserted1: $id2');
 
-      int id3 = await txn.rawInsert(
+      await txn.rawInsert(
           'INSERT INTO USUARIO(nome, tipo, login, senha, urlFoto, endereco) '
           'VALUES("Administrador", "Administrador", "admin", "admin", null, "Rua Pedro Epichin, 351, Colatina Velha, Colatina, ES")');
-      print('inserted1: $id3');
+
     });
 
     if (version >= 2) {
