@@ -79,7 +79,7 @@ class DatabaseHelper {
 
   Future<FutureOr<void>> _onUpgrade(
       Database db, int oldVersion, int newVersion) async {
-    if (newVersion < 2) {
+    if (oldVersion < 2) {
       await db.execute("alter table VENDA add valor_medio_compra REAL");
     }
   }
