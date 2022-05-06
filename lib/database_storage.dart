@@ -35,8 +35,6 @@ class DataBaseStorage {
 
     Reference storageReference = storageRef.child("$nome_arquivo.db");
     await storageReference.putFile(File(banco));
-    await storageReference.getDownloadURL();
-
 
     Directory diretorio =
         Directory(diretorio_imagens);
@@ -47,10 +45,8 @@ class DataBaseStorage {
       // sem o restante do path
       storageReference = storageRef.child("${arquivos[i].path.substring(46)}");
       await storageReference.putFile(arquivos[i]);
-      await storageReference.getDownloadURL();
     }
     MensagemAlerta("Backup executado com sucesso!!!");
-
   }
 
   static Future<void> buscarBDDoStorage(String nome_arquivo) async {
