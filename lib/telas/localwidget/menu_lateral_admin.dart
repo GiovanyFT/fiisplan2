@@ -19,11 +19,16 @@ class MenuLateralAdmin extends StatefulWidget {
 class _MenuLateralAdminState extends State<MenuLateralAdmin> {
   Usuario? usuario;
   Future<Usuario>? future;
+  Future<File>? future_arquivo;
 
   @override
   void initState() {
     super.initState();
     future = Usuario.obterNaoNulo();
+    future!.then((usuario){
+      if (usuario.urlFoto != null)
+        future_arquivo = GerenciadoraArquivo.obterImagem(usuario.urlFoto!);
+    });
   }
 
   UserAccountsDrawerHeader _header(ImageProvider imageProvider) {
@@ -137,8 +142,6 @@ class _MenuLateralAdminState extends State<MenuLateralAdmin> {
         if (usuario == null) {
           return Container();
         } else if (usuario!.urlFoto != null) {
-          Future<File> future_arquivo =
-          GerenciadoraArquivo.obterImagem(usuario!.urlFoto!);
           return FutureBuilder<File>(
               future: future_arquivo,
               builder: (context, snapshot) {

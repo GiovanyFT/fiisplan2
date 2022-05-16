@@ -19,6 +19,7 @@ class MenuLateral extends StatefulWidget {
 class _MenuLateralState extends State<MenuLateral> {
   Usuario? usuario;
   Future<Usuario>? future;
+  Future<File>? future_arquivo;
 
   @override
   void initState() {
@@ -27,6 +28,10 @@ class _MenuLateralState extends State<MenuLateral> {
     // não pode ser feita no build
     // (https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html)
     future = Usuario.obterNaoNulo();
+    future!.then((usuario){
+      if (usuario.urlFoto != null)
+        future_arquivo = GerenciadoraArquivo.obterImagem(usuario.urlFoto!);
+    });
   }
 
   UserAccountsDrawerHeader _header(ImageProvider imageProvider) {
@@ -53,7 +58,6 @@ class _MenuLateralState extends State<MenuLateral> {
                   return Container();
                 }
                 else if (usuario!.urlFoto != null){
-                  Future<File> future_arquivo = GerenciadoraArquivo.obterImagem(usuario!.urlFoto!);
                   return FutureBuilder<File>(
                       future: future_arquivo,
                       builder: (context, snapshot) {
@@ -62,7 +66,6 @@ class _MenuLateralState extends State<MenuLateral> {
                             child: CircularProgressIndicator(),
                           );
                         }
-
                         File? imagem = snapshot.data;
                         return _header(FileImage(imagem!));
                       }
