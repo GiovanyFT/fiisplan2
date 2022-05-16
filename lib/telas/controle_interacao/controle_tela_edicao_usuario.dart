@@ -46,7 +46,7 @@ class ControleTelaEdicacaoUsuario {
       controlador_senha.text = usuario!.senha!;
       controlador_endereco.text = usuario!.endereco!;
       tipo_usuario_selecionado = usuario!.tipo;
-      if (usuario!.urlFoto != null && usuario!.urlFoto != ""){
+      if (usuario!.urlFoto != null){
         imagem = await GerenciadoraArquivo.obterImagem(usuario!.urlFoto!);
       }
     } else {
