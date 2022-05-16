@@ -87,7 +87,8 @@ class ControleTelaEdicacaoUsuario {
         login: controlador_login.text,
         senha:  controlador_senha.text,
         endereco: controlador_endereco.text,
-        tipo: tipo_usuario_selecionado!, urlFoto: '',
+        tipo: tipo_usuario_selecionado!,
+        urlFoto: null,
       );
       if(imagem != null){
         usuario_novo.urlFoto = await GerenciadoraArquivo.salvarImagem(imagem!);
