@@ -18,7 +18,7 @@ class CardUsuario extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(5.0),
-            child: usuario.urlFoto == null || usuario.urlFoto == ""
+            child: usuario.urlFoto == null
                 ? Image.asset("assets/icon/icone_aplicacao.png",
                     fit: BoxFit.contain)
                 : _obterImagem(usuario.urlFoto!),
