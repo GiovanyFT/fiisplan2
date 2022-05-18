@@ -43,8 +43,21 @@ class ControleTelaAdministracaoUsuario{
 
   void irParaTelaEdicaoUsuario(BuildContext context, Usuario? usuario) async{
     String? s = await push(context, TelaEdicaoUsuario(usuario));
-    if (s == null || s == "Salvou"){
-      buscarUsuarios();
+    // Se houve alguma atualização (se o usuário clica em Voltar, s chega com valor null)
+    if (s != null){
+      // buscarUsuarios é chamado para atualizar a listagem de Usuários
+      // (na TelaEdicaoUsuario ocorreu alguma atualização que precisa ser refletida na listagem)
+      buscarUsuarios().then((value) {
+        // Se houve troca de imagem do usuário editado, o caminho desse arquivo virá em s.
+        if (s != ""){
+          // A exclusão do arquivo não pode ser feita em TelaEdicaoUsuario pois na volta para
+          // TelaAdministracaoUsuario ocorre um disparo de exceção fazendo dessa forma.
+          // Ao colocar a exclusão após a atualização da listagem de usuários, não fica faltando a imagem
+          // antiga na volta a TelaAdministracaoUsuario e ela é apagada quando já não há problema (quando
+          // a listagem já foi atualizada).
+          GerenciadoraArquivo.excluirArquivo(s);
+        }
+      });
     }
   }
 }

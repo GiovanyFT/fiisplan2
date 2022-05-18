@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:fiisplan2/controle/fabrica_contoladora.dart';
 import 'package:fiisplan2/dominio/usuario.dart';
 import 'package:fiisplan2/util/gerenciadora_arquivo.dart';
+import 'package:fiisplan2/util/nav.dart';
 import 'package:flutter/material.dart';
 
 
@@ -55,7 +56,8 @@ class ControleTelaEdicacaoUsuario {
     }
   }
 
-  Future<bool> atualizar_usuario(BuildContext context) async{
+  Future<String> atualizar_usuario(BuildContext context) async{
+    String s = "";
     if(usuario != null){
       usuario!.nome = controlador_nome.text;
       usuario!.login = controlador_login.text;
@@ -67,7 +69,8 @@ class ControleTelaEdicacaoUsuario {
         if (usuario!.urlFoto != null){
           // Se houve troca de foto
           if (imagem!.path != usuario!.urlFoto){
-            GerenciadoraArquivo.excluirArquivo(usuario!.urlFoto!);
+            // Guarando o caminho da foto antiga para futura exclusão
+            s = usuario!.urlFoto!;
             usuario!.urlFoto = await GerenciadoraArquivo.salvarImagem(imagem!);
           }
           // Se não havia foto é necessário salvá-la
@@ -95,14 +98,16 @@ class ControleTelaEdicacaoUsuario {
       }
       FabricaControladora.obterUsuarioControl().inserirUsuario(usuario_novo);
     }
-    return true;
+    return s;
   }
 
   void salvar_usuario(BuildContext context){
     if (formkey.currentState!.validate()) {
+      // A função atualizar_usuario retorna "" se não houve troca da imagem
+      // do usuário e retorna o caminho da imagem a ser excluída caso contrário
       Future future = atualizar_usuario(context);
       future.then((value){
-        Navigator.pop(context, "Salvou");
+        pop(context, mensagem: value);
       });
     }
   }
