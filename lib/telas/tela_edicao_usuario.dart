@@ -11,8 +11,9 @@ import 'controle_interacao/controle_tela_edicao_usuario.dart';
 
 class TelaEdicaoUsuario extends StatefulWidget {
   Usuario? usuario;
+  bool auto_limpeza_imagem;
 
-  TelaEdicaoUsuario(this.usuario);
+  TelaEdicaoUsuario(this.usuario, {this.auto_limpeza_imagem = true});
 
   @override
   _TelaEdicaoUsuarioState createState() => _TelaEdicaoUsuarioState();
@@ -24,7 +25,7 @@ class _TelaEdicaoUsuarioState extends State<TelaEdicaoUsuario> {
   @override
   void initState() {
     super.initState();
-    _controle = ControleTelaEdicacaoUsuario(widget.usuario);
+    _controle = ControleTelaEdicacaoUsuario(widget.usuario, widget.auto_limpeza_imagem);
     _controle.inicializar();
   }
 

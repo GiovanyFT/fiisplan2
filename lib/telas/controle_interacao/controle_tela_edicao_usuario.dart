@@ -12,9 +12,11 @@ import 'package:flutter/material.dart';
 class ControleTelaEdicacaoUsuario {
   final streamController = StreamController<Usuario>();
   Usuario? usuario;
+  bool auto_limpeza_imagem;
   late Usuario usuario_logado;
 
-  ControleTelaEdicacaoUsuario(this.usuario);
+
+  ControleTelaEdicacaoUsuario(this.usuario, this.auto_limpeza_imagem);
 
   // Controlador de formulário (para fazer validações)
   final formkey = GlobalKey<FormState>();
@@ -69,8 +71,15 @@ class ControleTelaEdicacaoUsuario {
         if (usuario!.urlFoto != null){
           // Se houve troca de foto
           if (imagem!.path != usuario!.urlFoto){
-            // Guarando o caminho da foto antiga para futura exclusão
-            s = usuario!.urlFoto!;
+            if (auto_limpeza_imagem){
+              // Excluíndo a arquivo antigo
+              print("Auto limpeza acionado");
+              GerenciadoraArquivo.excluirArquivo(usuario!.urlFoto!);
+            } else {
+              print("Gravei o caminho");
+              // Guarando o caminho da foto antiga para futura exclusão
+              s = usuario!.urlFoto!;
+            }
             usuario!.urlFoto = await GerenciadoraArquivo.salvarImagem(imagem!);
           }
           // Se não havia foto é necessário salvá-la

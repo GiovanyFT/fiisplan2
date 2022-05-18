@@ -42,7 +42,7 @@ class ControleTelaAdministracaoUsuario{
   }
 
   void irParaTelaEdicaoUsuario(BuildContext context, Usuario? usuario) async{
-    String? s = await push(context, TelaEdicaoUsuario(usuario));
+    String? s = await push(context, TelaEdicaoUsuario(usuario, auto_limpeza_imagem: false));
     // Se houve alguma atualização (se o usuário clica em Voltar, s chega com valor null)
     if (s != null){
       // buscarUsuarios é chamado para atualizar a listagem de Usuários
