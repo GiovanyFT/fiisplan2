@@ -16,11 +16,13 @@ class TelaMapaUsuarios extends StatefulWidget {
 
 class _TelaMapaUsuariosState extends State<TelaMapaUsuarios> {
   late ControleTelaMapaUsuarios _controle;
+  late Future<List<Marker>> future;
 
   @override
   void initState() {
     super.initState();
     _controle = ControleTelaMapaUsuarios(widget.usuarios);
+    future = _controle.obterMarkers(widget.usuarios);
   }
 
   @override
@@ -34,7 +36,6 @@ class _TelaMapaUsuariosState extends State<TelaMapaUsuarios> {
   }
 
   _body() {
-    Future<List<Marker>> future = _controle.obterMarkers(widget.usuarios);
     return FutureBuilder<List<Marker>>(
       future: future,
       builder: (context, snapshot) {
