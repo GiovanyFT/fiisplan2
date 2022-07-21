@@ -24,7 +24,7 @@ class _TelaListagemVendasState extends State<TelaListagemVendas> {
   void initState() {
     super.initState();
     _controle = ControleTelaListagemVendas(
-        widget.patrimonio, widget.controleTelaPrincipal);
+        widget.patrimonio, widget.controleTelaPrincipal, context);
     _controle.setarAnoAtual();
     _controle.buscarVendas();
   }

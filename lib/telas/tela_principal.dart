@@ -31,7 +31,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
   @override
   void initState() {
     super.initState();
-    _controle = ControleTelaPrincipal(widget.usuario);
+    _controle = ControleTelaPrincipal(widget.usuario, context);
     _controle.buscarPatrimonios();
 
     TratadorNotificacao.inicializarFCM(context);

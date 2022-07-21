@@ -21,7 +21,7 @@ class _TelaAdministracaoUsuarioState extends State<TelaAdministracaoUsuario>{
   @override
   void initState() {
     super.initState();
-    _controle = ControleTelaAdministracaoUsuario();
+    _controle = ControleTelaAdministracaoUsuario(this.context);
     _controle.buscarUsuarios();
   }
 

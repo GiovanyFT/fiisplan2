@@ -13,12 +13,13 @@ import 'controle_tela_principal.dart';
 
 class ControleTelaListagemCompras {
   final streamController = StreamController<List<Compra>>();
+  BuildContext context;
 
   Patrimonio patrimonio;
   ControleTelaPrincipal controleTelaPrincipal;
   List<Compra>? compras;
 
-  ControleTelaListagemCompras(this.patrimonio, this.controleTelaPrincipal);
+  ControleTelaListagemCompras(this.patrimonio, this.controleTelaPrincipal, this.context);
 
   // Controladores dos campos de edição
   final controlador_ano = TextEditingController();
@@ -49,7 +50,7 @@ class ControleTelaListagemCompras {
   void removerCompra(int index) {
     Compra compra = compras![index];
     if(patrimonio.qt_cotas - compra.quantidade < 0){
-      MensagemAlerta("Não é possível excluir essa Compra (exclua primeiro alguma(s) Vendas)");
+      MensagemErro(context, "Não é possível excluir essa Compra (exclua primeiro alguma(s) Vendas)");
     } else{
       compras!.removeAt(index);
       FabricaControladora.obterCompraControl().removerCompra(compra);

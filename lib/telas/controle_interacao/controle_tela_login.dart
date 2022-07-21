@@ -34,7 +34,7 @@ class ControleTelaLogin {
           push(context, TelaAdministracaoUsuario(), replace:  true);
         }
       } else {
-        MensagemAlerta("Login ou senha inválidos!!");
+        MensagemErro(context, "Login ou senha inválidos!!");
       }
     }
   }

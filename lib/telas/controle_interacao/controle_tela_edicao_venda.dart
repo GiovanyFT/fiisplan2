@@ -7,9 +7,10 @@ import 'package:flutter/material.dart';
 
 class ControleTelaEdicaoVenda{
   Patrimonio patrimonio;
+  BuildContext context;
   Venda? venda = null;
 
-  ControleTelaEdicaoVenda(this.patrimonio);
+  ControleTelaEdicaoVenda(this.patrimonio, this.context);
 
   // Controlador de formulário (para fazer validações)
   final formkey = GlobalKey<FormState>();
@@ -52,7 +53,7 @@ class ControleTelaEdicaoVenda{
   bool _inserir_venda() {
     int qt_cotas = int.parse(controlador_quantidade_cotas.text);
     if (qt_cotas > patrimonio.qt_cotas){
-      MensagemAlerta("Não é possível vender mais cotas do que se tem");
+      MensagemErro(context, "Não é possível vender mais cotas do que se tem");
       return false;
     } else {
       venda = Venda(

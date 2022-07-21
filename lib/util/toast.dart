@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:motion_toast/motion_toast.dart';
 
-// No Android 30 a customização não funcionou, mas aparece o Toast
-// Até o 29 está ok, inclusive a customização
-void MensagemAlerta(String msg){
-  Fluttertoast.showToast(
-      msg: msg,
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.red,
-      textColor: Colors.white,
-      fontSize: 16.0
-  );
+void MensagemErro(BuildContext context, String msg){
+  MotionToast.error(
+      title:  Text("Erro"),
+      description:  Text(msg)
+  ).show(context);
 }
+
+
+void MensagemAlerta(BuildContext context, String msg){
+  MotionToast.warning(
+      title:  Text("Atenção"),
+      description:  Text(msg)
+  ).show(context);
+}
+
+void MensagemSucesso(BuildContext context, String msg){
+  MotionToast.success(
+      title:  Text("Sucesso"),
+      description:  Text(msg)
+  ).show(context);
+}
+

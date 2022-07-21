@@ -17,7 +17,7 @@ class ControleTelaListagemVendas {
   ControleTelaPrincipal controleTelaPrincipal;
   List<Venda>? vendas;
 
-  ControleTelaListagemVendas(this.patrimonio, this.controleTelaPrincipal);
+  ControleTelaListagemVendas(this.patrimonio, this.controleTelaPrincipal, context);
 
   // Controladores dos campos de edição
   final controlador_ano = TextEditingController();
@@ -37,7 +37,7 @@ class ControleTelaListagemVendas {
   }
 
   void irTelaEdicaoVenda(BuildContext context) async{
-    String s = await push(context, TelaEdicaoVenda(patrimonio));
+    String s = await push(context, TelaEdicaoVenda(patrimonio, context));
     if (s == "Salvou") {
       vendas = await FabricaControladora.obterVendaControl().obterVendas(patrimonio, controlador_ano.text);
       streamController.add(vendas!);

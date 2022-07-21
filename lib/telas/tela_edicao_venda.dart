@@ -11,7 +11,7 @@ import 'controle_interacao/controle_tela_edicao_venda.dart';
 class TelaEdicaoVenda extends StatefulWidget {
   Patrimonio patrimonio;
 
-  TelaEdicaoVenda(this.patrimonio);
+  TelaEdicaoVenda(this.patrimonio, context);
 
   @override
   _TelaEdicaoVendaState createState() => _TelaEdicaoVendaState();
@@ -23,7 +23,7 @@ class _TelaEdicaoVendaState extends State<TelaEdicaoVenda> {
   @override
   void initState() {
     super.initState();
-    _controle = ControleTelaEdicaoVenda(widget.patrimonio);
+    _controle = ControleTelaEdicaoVenda(widget.patrimonio, context);
   }
 
   @override

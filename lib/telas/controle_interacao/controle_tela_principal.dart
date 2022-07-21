@@ -15,6 +15,7 @@ import '../tela_listagem_dividendos.dart';
 import '../tela_listagem_vendas.dart';
 
 class ControleTelaPrincipal {
+  BuildContext context;
   static const List<String> campos_ordenacao =
   ["Sigla - Crescente",
     "Sigla - Decrescente",
@@ -36,7 +37,7 @@ class ControleTelaPrincipal {
   late List<Patrimonio> patrimonios;
   Usuario usuario;
 
-  ControleTelaPrincipal(this.usuario);
+  ControleTelaPrincipal(this.usuario, this.context);
 
   bool _recarregar_patrimonios = false;
 
@@ -63,7 +64,7 @@ class ControleTelaPrincipal {
 
 
   Future irParaTelaCompras(BuildContext context, Patrimonio patrimonio) async {
-    await push(context, TelaListagemCompras(patrimonio, this));
+    await push(context, TelaListagemCompras(patrimonio, this, context));
     if (_recarregar_patrimonios) {
        patrimonios = await FabricaControladora.obterPatrimonioControl().obterPatrimonios(usuario, atributo: campo_selecionado);
        streamController.add(patrimonios);
@@ -84,7 +85,7 @@ class ControleTelaPrincipal {
     Patrimonio patrimonio = patrimonios[index];
     int? qt_compras = await FabricaControladora.obterCompraControl().obterQuantidadeCompras(patrimonio);
     if (qt_compras! > 0){
-      MensagemAlerta("Não é possível excluir o patrimônio (existem compras vinculadas a esse patrimônio) ");
+      MensagemAlerta(context, "Não é possível excluir o patrimônio (existem compras vinculadas a esse patrimônio) ");
     } else {
       patrimonio = patrimonios.removeAt(index);
       FabricaControladora.obterPatrimonioControl().removerPatrimonio(patrimonio);

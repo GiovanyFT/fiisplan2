@@ -13,7 +13,7 @@ class TelaListagemCompras extends StatefulWidget {
   Patrimonio patrimonio;
   ControleTelaPrincipal controleTelaPrincipal;
 
-  TelaListagemCompras(this.patrimonio, this.controleTelaPrincipal);
+  TelaListagemCompras(this.patrimonio, this.controleTelaPrincipal, context);
 
   @override
   _TelaListagemComprasState createState() => _TelaListagemComprasState();
@@ -26,7 +26,7 @@ class _TelaListagemComprasState extends State<TelaListagemCompras> {
   void initState() {
     super.initState();
     _controle = ControleTelaListagemCompras(
-        widget.patrimonio, widget.controleTelaPrincipal);
+        widget.patrimonio, widget.controleTelaPrincipal, context);
     _controle.setarAnoAtual();
     _controle.buscarCompras();
   }

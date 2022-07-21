@@ -4,6 +4,7 @@ import 'package:fiisplan2/dominio/usuario.dart';
 import 'package:fiisplan2/util/gerenciadora_arquivo.dart';
 import 'package:fiisplan2/util/nav.dart';
 import 'package:flutter/material.dart';
+import 'package:fiisplan2/util/toast.dart';
 
 import '../../database_storage.dart';
 import '../tela_ajuda.dart';
@@ -115,6 +116,7 @@ class _MenuLateralAdminState extends State<MenuLateralAdmin> {
 
         // Salvando o banco de dados na nuvem
         DataBaseStorage.enviarBDParaStorage(usuario!.login!);
+        MensagemSucesso(context, "Backup executado com sucesso!!!");
       },
     );
   }
