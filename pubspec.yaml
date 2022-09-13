@@ -55,7 +55,7 @@ dependencies:
   geocoding: ^2.0.1
   # geocoder: ^0.2.1
   # Firebase Cloud Messaging
-  firebase_messaging: ^10.0.8
+  firebase_messaging: ^12.0.3
   firebase_core: ^1.7.0
   # Acessando páginas web
   webview_flutter: ^2.1.1
