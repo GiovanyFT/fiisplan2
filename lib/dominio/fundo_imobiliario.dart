@@ -2,7 +2,7 @@
 
 import 'objeto.dart';
 
-class SegmentoFundoImobiliario{
+abstract class SegmentoFundoImobiliario{
   static final String agencias_bancarias = "Agências Bancárias";
   static final String educacional = "Educacional";
   static final String fundo_fundos = "Fundo de Fundos";

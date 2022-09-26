@@ -4,7 +4,7 @@ import 'package:fiisplan2/util/prefs.dart';
 
 import 'objeto.dart';
 
-class TipoUsuario{
+abstract class TipoUsuario{
   static final String padrao = "Padrão";
   static final String administrador = "Administrador";
 }
