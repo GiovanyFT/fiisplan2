@@ -1,14 +1,10 @@
 import 'dart:io';
 
 import 'package:fiisplan2/dominio/usuario.dart';
-import 'package:fiisplan2/util/gerenciadora_arquivo.dart';
-import 'package:fiisplan2/util/nav.dart';
 import 'package:flutter/material.dart';
-import 'package:fiisplan2/util/toast.dart';
 
-import '../../database_storage.dart';
-import '../tela_ajuda.dart';
-import '../tela_login.dart';
+import '../controle_interacao/controle_menu_lateral_admin.dart';
+
 
 class MenuLateralAdmin extends StatefulWidget {
   const MenuLateralAdmin({Key? key}) : super(key: key);
@@ -18,24 +14,18 @@ class MenuLateralAdmin extends StatefulWidget {
 }
 
 class _MenuLateralAdminState extends State<MenuLateralAdmin> {
-  Usuario? usuario;
-  Future<Usuario>? future;
-  Future<File>? future_arquivo;
+  ControleMenuLateralAdmin _controle = ControleMenuLateralAdmin();
 
   @override
   void initState() {
     super.initState();
-    future = Usuario.obterNaoNulo();
-    future!.then((usuario){
-      if (usuario.urlFoto != null)
-        future_arquivo = GerenciadoraArquivo.obterImagem(usuario.urlFoto!);
-    });
+    _controle.inicializar();
   }
 
   UserAccountsDrawerHeader _header(ImageProvider imageProvider) {
     return UserAccountsDrawerHeader(
-      accountName: Text(usuario!.nome!),
-      accountEmail: Text(usuario!.login!),
+      accountName: Text(_controle.usuario!.nome!),
+      accountEmail: Text(_controle.usuario!.login!),
       currentAccountPicture: CircleAvatar(
         backgroundImage: imageProvider,
       ),
@@ -49,14 +39,14 @@ class _MenuLateralAdminState extends State<MenuLateralAdmin> {
         child: ListView(
           children: Platform.isAndroid
               ? <Widget>[
-            _cabecalho(future!),
+            _cabecalho(_controle.future!),
             _ajuda(context),
             _backup(context),
             _restore(context),
             _sair(context)
           ]
               : <Widget>[
-            _cabecalho(future!),
+            _cabecalho(_controle.future!),
             _ajuda(context),
             _sair(context),
           ],
@@ -70,14 +60,7 @@ class _MenuLateralAdminState extends State<MenuLateralAdmin> {
       title: Text("Sair"),
       trailing: Icon(Icons.arrow_forward),
       onTap: () {
-        // Fechando o menu lateral
-        pop(context);
-
-        // Sobrescrevendo a tela de Login
-        push(context, TelaLogin(), replace: true);
-
-        // Retirando o usuário das Shared Preferences
-        Usuario.limpar();
+        _controle.sair(context);
       },
     );
   }
@@ -89,17 +72,7 @@ class _MenuLateralAdminState extends State<MenuLateralAdmin> {
       subtitle: Text("buscando o banco de dados na nuvem"),
       trailing: Icon(Icons.arrow_forward),
       onTap: () async {
-        // Fechando o menu lateral
-        pop(context);
-
-        // Salvando o banco de dados na nuvem
-        DataBaseStorage.buscarBDDoStorage(usuario!.login!);
-
-        // Sobrescrevendo a tela de Login
-        push(context, TelaLogin(), replace: true);
-
-        // Retirando o usuário das Shared Preferences
-        Usuario.limpar();
+        _controle.restaurarBDFirebaseStorage(context);
       },
     );
   }
@@ -111,12 +84,7 @@ class _MenuLateralAdminState extends State<MenuLateralAdmin> {
       subtitle: Text("salvando o banco de dados na nuvem"),
       trailing: Icon(Icons.arrow_forward),
       onTap: () async {
-        // Fechando o menu lateral
-        pop(context);
-
-        // Salvando o banco de dados na nuvem
-        DataBaseStorage.enviarBDParaStorage(usuario!.login!);
-        MensagemSucesso(context, "Backup executado com sucesso!!!");
+        _controle.salvarBDFirebaseStorage(context);
       },
     );
   }
@@ -128,10 +96,7 @@ class _MenuLateralAdminState extends State<MenuLateralAdmin> {
       subtitle: Text("como usar"),
       trailing: Icon(Icons.arrow_forward),
       onTap: () {
-        // Fechando o menu lateral
-        pop(context);
-
-        push(context, TelaAjuda());
+        _controle.irTelaAjuda(context);
       },
     );
   }
@@ -140,12 +105,12 @@ class _MenuLateralAdminState extends State<MenuLateralAdmin> {
     return FutureBuilder<Usuario>(
       future: future,
       builder: (context, snapshot) {
-        usuario = snapshot.data;
-        if (usuario == null) {
+        _controle.usuario = snapshot.data;
+        if (_controle.usuario == null) {
           return Container();
-        } else if (usuario!.urlFoto != null) {
+        } else if (_controle.usuario!.urlFoto != null) {
           return FutureBuilder<File>(
-              future: future_arquivo,
+              future: _controle.future_arquivo,
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   return Center(

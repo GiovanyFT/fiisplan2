@@ -48,26 +48,31 @@ class DataBaseStorage {
     }
   }
 
-  static Future<void> buscarBDDoStorage(String nome_arquivo) async {
+  static Future<bool> buscarBDDoStorage(String nome_arquivo) async {
     var storageRef = FirebaseStorage.instance.ref("/$nome_arquivo/");
     Reference storageReference = storageRef.child("$nome_arquivo.db");
-    TaskSnapshot task = await storageReference.writeToFile(File(banco));
-
-
-    task.ref.listAll().then((value) {
-      Future<List<Usuario>> future = FabricaControladora.obterUsuarioControl()
-          .obterUsuarios();
-      future.then((usuarios) async {
-        storageRef = FirebaseStorage.instance.ref("/$nome_arquivo/imagens/");
-        for (Usuario usuario in usuarios) {
-          if (usuario.urlFoto != null) {
-            String nome_foto = "${usuario.urlFoto!}";
-            String local_gravacao_imagem = "$diretorio_imagens${nome_foto.substring(48)}";
-            storageReference = storageRef.child(nome_foto.substring(48));
-            await storageReference.writeToFile(File(local_gravacao_imagem));
-          }
-        };
+    bool encontrou_bd = true;
+    await storageReference.writeToFile(File(banco)).then((task){
+      task.ref.listAll().then((value) {
+        Future<List<Usuario>> future = FabricaControladora.obterUsuarioControl()
+            .obterUsuarios();
+        future.then((usuarios) async {
+          storageRef = FirebaseStorage.instance.ref("/$nome_arquivo/imagens/");
+          for (Usuario usuario in usuarios) {
+            if (usuario.urlFoto != null) {
+              String nome_foto = "${usuario.urlFoto!}";
+              String local_gravacao_imagem = "$diretorio_imagens${nome_foto.substring(48)}";
+              storageReference = storageRef.child(nome_foto.substring(48));
+              await storageReference.writeToFile(File(local_gravacao_imagem));
+            }
+          };
+        });
+        print("Banco obtido com sucesso!!");
       });
+    }).catchError((erro){
+      print("Erro: $erro");
+      encontrou_bd = false;
     });
+    return encontrou_bd;
   }
 }
