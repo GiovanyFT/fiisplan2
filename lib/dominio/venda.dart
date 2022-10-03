@@ -11,7 +11,10 @@ class Venda extends Transacao{
   }
 
   Venda.fromMap(Map<String, dynamic> map) : super.fromMap(map){
-    this.valor_medio_compra = map["valor_medio_compra"];
+    if (map["valor_medio_compra"] == null)
+      this.valor_medio_compra = 0;
+    else
+      this.valor_medio_compra = map["valor_medio_compra"];
   }
 
 }
