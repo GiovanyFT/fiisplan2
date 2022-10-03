@@ -2,6 +2,8 @@
 import 'package:fiisplan2/dominio/patrimonio.dart';
 import 'package:fiisplan2/dominio/transacao.dart';
 
+Comparator<Venda> vendaPorData = (v1, v2) => v1.data_transacao.compareTo(v2.data_transacao);
+
 class Venda extends Transacao{
   late double valor_medio_compra;
 

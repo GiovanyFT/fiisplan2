@@ -3,8 +3,6 @@ import 'package:fiisplan2/dominio/compra.dart';
 import 'package:fiisplan2/dominio/patrimonio.dart';
 import 'package:fiisplan2/persistencia/compra_dao.dart';
 
-Comparator<Compra> compraPorData = (c1, c2) => c1.data_transacao.compareTo(c2.data_transacao);
-
 class CompraControl{
   CompraDAO _dao = CompraDAO();
 

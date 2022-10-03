@@ -4,6 +4,9 @@ import 'package:fiisplan2/util/prefs.dart';
 
 import 'objeto.dart';
 
+Comparator<Usuario> usuarioPorNome= (u1, u2) => u1.nome!.compareTo(u2.nome!);
+
+
 abstract class TipoUsuario{
   static final String padrao = "Padrão";
   static final String administrador = "Administrador";

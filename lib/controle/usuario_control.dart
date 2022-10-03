@@ -2,7 +2,6 @@
 import 'package:fiisplan2/dominio/usuario.dart';
 import 'package:fiisplan2/persistencia/usuario_dao.dart';
 
-Comparator<Usuario> usuarioPorNome= (u1, u2) => u1.nome!.compareTo(u2.nome!);
 
 class UsuarioControl{
   UsuarioDAO _dao = UsuarioDAO();

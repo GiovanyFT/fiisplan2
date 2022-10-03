@@ -3,7 +3,6 @@ import 'package:fiisplan2/dominio/dividendo.dart';
 import 'package:fiisplan2/dominio/patrimonio.dart';
 import 'package:fiisplan2/persistencia/dividendo_dao.dart';
 
-Comparator<Dividendo> dividendoPorData = (c1, c2) => c1.data.compareTo(c2.data);
 
 class DividendoControl{
   DividendoDAO _dao = DividendoDAO();

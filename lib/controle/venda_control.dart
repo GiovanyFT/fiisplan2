@@ -3,8 +3,6 @@ import 'package:fiisplan2/dominio/patrimonio.dart';
 import 'package:fiisplan2/dominio/venda.dart';
 import 'package:fiisplan2/persistencia/venda_dao.dart';
 
-Comparator<Venda> vendaPorData = (v1, v2) => v1.data_transacao.compareTo(v2.data_transacao);
-
 class VendaControl{
   VendaDAO _dao = VendaDAO();
 
