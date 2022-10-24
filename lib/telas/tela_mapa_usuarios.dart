@@ -22,7 +22,7 @@ class _TelaMapaUsuariosState extends State<TelaMapaUsuarios> {
   void initState() {
     super.initState();
     _controle = ControleTelaMapaUsuarios(widget.usuarios);
-    future = _controle.obterMarkers(widget.usuarios);
+    future = _controle.obterMarkers();
   }
 
   @override

@@ -57,7 +57,7 @@ class ControleTelaMapaUsuarios{
     }
   }
 
-  Future<List<Marker>> obterMarkers(List<Usuario> usuarios) async {
+  Future<List<Marker>> obterMarkers() async {
     List<Marker> markers = <Marker>[];
     for (Usuario usuario in usuarios) {
       LatLng? latLng =
