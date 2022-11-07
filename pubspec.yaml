@@ -34,7 +34,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   # Calendário
-  flutter_rounded_date_picker: ^3.0.1
+  flutter_rounded_date_picker: ^3.0.2
   sqflite: ^2.0.0+4
   # Mais icones
   font_awesome_flutter: ^9.1.0
@@ -55,12 +55,12 @@ dependencies:
   geocoding: ^2.0.1
   # geocoder: ^0.2.1
   # Firebase Cloud Messaging
-  firebase_messaging: ^12.0.3
-  firebase_core: ^1.7.0
+  firebase_messaging: ^14.0.4
+  firebase_core: ^2.1.1
   # Acessando páginas web
   webview_flutter: ^2.1.1
   # Armazenamento de arquivos
-  firebase_storage: ^10.0.4
+  firebase_storage: ^11.0.4
 
 
   # The following adds the Cupertino Icons font to your application.
