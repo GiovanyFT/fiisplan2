@@ -41,8 +41,14 @@ class _MenuLateralAdminState extends State<MenuLateralAdmin> {
               ? <Widget>[
             _cabecalho(_controle.future!),
             _ajuda(context),
-            _backup(context),
-            _restore(context),
+            ExpansionTile(
+                title: Text("Backup/Restore"),
+                subtitle: Text('Salvamento/recuperação de dados'),
+                children: <Widget>[
+                  _backup(context),
+                  _restore(context),
+                ]
+            ),
             _sair(context)
           ]
               : <Widget>[
