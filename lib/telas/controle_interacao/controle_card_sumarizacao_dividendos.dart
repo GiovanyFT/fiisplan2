@@ -7,14 +7,13 @@ class ControleCardSumarizacaoDividendos{
   Patrimonio patrimonio;
   String text_ano;
   late List<double> dividendos_por_mes;
-  late double total_ano;
+  double total_ano = 0;
 
   ControleCardSumarizacaoDividendos(this.patrimonio, this.text_ano);
 
   Future<List<double>> gerarDividendosPorMes() async{
     List<Dividendo> dividendos = await FabricaControladora.obterDividendoControl().obterDividendos(patrimonio, text_ano);
     dividendos_por_mes = <double>[];
-    total_ano = 0;
     for(String mes in MesesAno.meses){
       double valor = 0;
       for(Dividendo dividendo in dividendos){
