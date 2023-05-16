@@ -34,14 +34,14 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   # Calendário
-  flutter_rounded_date_picker: ^3.0.2
+  #flutter_rounded_date_picker: ^3.0.2
   sqflite: ^2.0.0+4
   # Mais icones
   font_awesome_flutter: ^9.1.0
   # Gráficos
   fl_chart: ^0.55.0
   # String formatada
-  intl: 0.17.0
+  intl: 0.18.0
   # Foto e galeria
   image_picker: ^0.8.4+2
   # Diretórios do sistema

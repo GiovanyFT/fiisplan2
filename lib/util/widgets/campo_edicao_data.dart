@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
+//import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 
 import '../formatacao.dart';
 import 'botao_icone.dart';
@@ -87,14 +87,14 @@ class _CampoEdicaoDataState extends State<CampoEdicaoData> {
           flex: 1,
           child: BotaoIcone(
             ao_clicar: () async {
-              DateTime? datatime = await showRoundedDatePicker(
-                  context: context,
-                  theme: ThemeData(
-                    primarySwatch: Colors.green
-                  ),
-              );
+     //         DateTime? datatime = await showRoundedDatePicker(
+       //           context: context,
+        //          theme: ThemeData(
+           //         primarySwatch: Colors.green
+          //        ),
+            //  );
               setState(() {
-                widget.controlador!.text = formatarDateTime(datatime!);
+      //          widget.controlador!.text = formatarDateTime(datatime!);
               });
             },
             cor: Colors.green,
