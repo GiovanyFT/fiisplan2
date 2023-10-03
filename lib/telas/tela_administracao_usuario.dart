@@ -39,7 +39,7 @@ class _TelaAdministracaoUsuarioState extends State<TelaAdministracaoUsuario>{
         actions: <Widget>[
           IconButton(
             icon: FaIcon(
-              FontAwesomeIcons.mapMarked,
+              FontAwesomeIcons.mapLocation,
             ),
             onPressed: () {
               push(context, TelaMapaUsuarios(_controle.usuarios));
@@ -78,7 +78,7 @@ class _TelaAdministracaoUsuarioState extends State<TelaAdministracaoUsuario>{
       padding: EdgeInsets.all(16),
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemCount: _controle.usuarios != null ? _controle.usuarios.length : 0,
+        itemCount: _controle.usuarios.length,
         itemBuilder: (context, index) {
           Usuario usuario = _controle.usuarios[index];
           return GestureDetector(

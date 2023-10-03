@@ -29,15 +29,15 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  shared_preferences: ^2.0.8
+  shared_preferences: ^2.2.1
   # Apoio Calendario
   flutter_localizations:
     sdk: flutter
   # Calendário
   flutter_rounded_date_picker: ^3.0.3
-  sqflite: ^2.0.0+4
+  sqflite: ^2.3.0
   # Mais icones
-  font_awesome_flutter: ^9.1.0
+  font_awesome_flutter: ^10.5.0
   # Gráficos
   fl_chart: ^0.55.0
   # String formatada

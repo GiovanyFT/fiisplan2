@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CardPatrimonio extends StatelessWidget {
-  ControleTelaPrincipal controle;
-  Patrimonio patrimonio;
+  final ControleTelaPrincipal controle;
+  final Patrimonio patrimonio;
 
   CardPatrimonio(this.patrimonio, this.controle);
 
@@ -131,7 +131,7 @@ class CardPatrimonio extends StatelessWidget {
                           controle.irParaTelaDividendos(context, patrimonio);
                         },
                         cor: Colors.amber,
-                        icone:  FontAwesomeIcons.handHoldingUsd,
+                        icone:  FontAwesomeIcons.handHoldingDollar,
                       ),
                     ),
                   ],

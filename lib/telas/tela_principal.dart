@@ -17,7 +17,7 @@ import 'localwidget/menu_lateral.dart';
 
 
 class TelaPrincipal extends StatefulWidget {
-  Usuario usuario;
+  final Usuario usuario;
 
   TelaPrincipal(this.usuario);
 
@@ -60,7 +60,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
           IconButton(
             icon: FaIcon(
               //,
-              FontAwesomeIcons.searchDollar,
+              FontAwesomeIcons.magnifyingGlassDollar,
             ),
             onPressed: () {
               _controle.irParaTelaDividendosImpostos(context);
@@ -173,8 +173,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
       padding: EdgeInsets.all(16),
       child: ListView.builder(
         shrinkWrap: true,
-        itemCount:
-            _controle.patrimonios != null ? _controle.patrimonios.length : 0,
+        itemCount: _controle.patrimonios.length,
         itemBuilder: (context, index) {
           Patrimonio patrimonio = _controle.patrimonios[index];
           return GestureDetector(
