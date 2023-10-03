@@ -44,7 +44,6 @@ abstract class BaseDAO<T>{
       sql += ' ${nomes_filtros[i]} = ? and ';
     }
     sql += ' ${nomes_filtros[qt_filtros - 1]} = ?';
-    print('==> Update: $sql');
     await dbClient.rawUpdate(sql, valores);
   }
 
