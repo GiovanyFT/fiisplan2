@@ -493,6 +493,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.6.5"
+  native_video_view:
+    dependency: "direct main"
+    description:
+      name: native_video_view
+      sha256: "8628f648814e4b75a5a0f2b28a442eaf53aedc765768a5255aeae4e6e74d5055"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.5"
   path:
     dependency: transitive
     description:

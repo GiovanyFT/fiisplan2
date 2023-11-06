@@ -1,7 +1,6 @@
 import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
-//import 'package:native_video_view/native_video_view.dart';
 import 'package:video_player/video_player.dart';
 
 class TelaAjuda extends StatefulWidget {
