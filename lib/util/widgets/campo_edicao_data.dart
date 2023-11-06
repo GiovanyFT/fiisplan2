@@ -47,6 +47,7 @@ class _CampoEdicaoDataState extends State<CampoEdicaoData> {
         Expanded(
           flex: 5,
           child: TextFormField(
+            enabled: false,
             validator: widget.validador,
             obscureText: widget.passaword,
             controller: widget.controlador,
