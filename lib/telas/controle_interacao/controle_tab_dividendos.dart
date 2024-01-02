@@ -40,7 +40,10 @@ class ControleTabDividendos {
         patrimonios.add(patrimonio);
       }
     }
-    return patrimonios;
+    if (patrimonios.isEmpty)
+      return patrimonios_usuario;
+    else
+      return patrimonios;
   }
 
 
