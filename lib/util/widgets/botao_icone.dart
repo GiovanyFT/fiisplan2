@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BotaoIcone extends StatelessWidget {
-  String texto;
-  VoidCallback? ao_clicar;
-  FocusNode? marcador_foco;
-  Color? cor;
-  bool mostrar_progress;
-  IconData? icone;
+  final String texto;
+  final VoidCallback? ao_clicar;
+  final FocusNode? marcador_foco;
+  final Color? cor;
+  final bool mostrar_progress;
+  final IconData? icone;
 
   BotaoIcone(
       {this.texto = "",
@@ -39,7 +39,9 @@ class BotaoIcone extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Icon(icone),
+                        Icon(icone,
+                          size: 13,
+                        ),
                         Text(
                           texto,
                           style: TextStyle(

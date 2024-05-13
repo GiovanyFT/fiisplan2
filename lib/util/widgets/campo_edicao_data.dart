@@ -7,14 +7,14 @@ import 'botao_icone.dart';
 
 
 class CampoEdicaoData extends StatefulWidget {
-  String texto_label;
-  String texto_dica;
-  bool  passaword;
-  TextEditingController? controlador;
+  final String texto_label;
+  final String texto_dica;
+  final bool  passaword;
+  final TextEditingController? controlador;
   late FormFieldValidator<String> validador;
-  TextInputType teclado;
-  FocusNode? marcador_foco;
-  FocusNode? recebedor_foco;
+  final TextInputType teclado;
+  final FocusNode? marcador_foco;
+  final FocusNode? recebedor_foco;
 
   CampoEdicaoData(
       this.texto_label,
@@ -91,7 +91,10 @@ class _CampoEdicaoDataState extends State<CampoEdicaoData> {
               DateTime? datatime = await showRoundedDatePicker(
                   context: context,
                   theme: ThemeData(
-                    primarySwatch: Colors.green
+                    colorScheme: ColorScheme.fromSeed(
+                      seedColor: Colors.green,
+                      primary: Colors.green,
+                    ),
                   ),
               );
               setState(() {
