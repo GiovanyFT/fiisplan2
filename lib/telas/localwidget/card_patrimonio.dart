@@ -14,7 +14,7 @@ class CardPatrimonio extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
-        height: 150,
+        height: 170,
         padding: EdgeInsets.all(10),
         child: Row(
           children: <Widget>[
