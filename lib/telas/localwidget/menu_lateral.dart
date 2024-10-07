@@ -5,7 +5,7 @@ import 'package:fiisplan2/util/gerenciadora_arquivo.dart';
 import 'package:fiisplan2/util/nav.dart';
 import 'package:flutter/material.dart';
 
-import '../tela_ajuda_native_video_view.dart';
+import '../tela_ajuda.dart';
 import '../tela_edicao_usuario.dart';
 import '../tela_login.dart';
 
@@ -96,7 +96,7 @@ class _MenuLateralState extends State<MenuLateral> {
                 // Fechando o menu lateral
                 pop(context);
 
-                push(context, TelaAjudaNativeVideoView());
+                push(context, TelaAjuda());
               },
             ),
             ListTile(

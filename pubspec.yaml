@@ -41,13 +41,12 @@ dependencies:
   # Gráficos
   fl_chart: ^0.68.0
   # String formatada
-  intl: 0.18.1
+  intl: ^0.19.0
   # Foto e galeria
   image_picker: ^1.1.1
   # Diretórios do sistema
   path_provider: ^2.0.5
   # Videos
-  native_video_view: ^1.0.5
   video_player: ^2.2.5
   # Mapas
   google_maps_flutter: ^2.5.0
@@ -69,7 +68,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.13.1
+  flutter_launcher_icons: ^0.14.1
   motion_toast: ^2.3.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -77,7 +76,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
 
 
 flutter_icons:
