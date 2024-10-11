@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+
 class TelaWebViewFundos extends StatefulWidget {
-  String url;
+  @immutable
+  final String url;
 
   TelaWebViewFundos(this.url);
 
@@ -13,6 +15,30 @@ class TelaWebViewFundos extends StatefulWidget {
 class _TelaWebViewFundosState extends State<TelaWebViewFundos> {
   var _indice_pilha = 1;
   late WebViewController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setNavigationDelegate(
+        NavigationDelegate(
+          onProgress: (int progress) {},
+          onPageStarted: (String url) {},
+          onPageFinished: (String url) {
+            setState(() {
+              this._indice_pilha = 0;
+            });
+          },
+          onHttpError: (HttpResponseError error) {},
+          onWebResourceError: (WebResourceError error) {},
+          onNavigationRequest: (NavigationRequest request) {
+            return NavigationDecision.navigate;
+          },
+        ),
+      )
+      ..loadRequest(Uri.parse(this.widget.url));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,23 +64,7 @@ class _TelaWebViewFundosState extends State<TelaWebViewFundos> {
         Column(
           children: <Widget>[
             Expanded(
-              child: WebView(
-                initialUrl: this.widget.url,
-                onWebViewCreated: (controller) {
-                  _controller = controller;
-                },
-                // Habilita o JavaScript
-                javascriptMode: JavascriptMode.unrestricted,
-                // Permite navegar na página
-                navigationDelegate: (request){
-                  return NavigationDecision.navigate;
-                },
-                onPageFinished: (value){
-                  setState(() {
-                    this._indice_pilha = 0;
-                  });
-                },
-              ),
+              child: WebViewWidget(controller: _controller),
             ),
           ],
         ),
