@@ -8,6 +8,7 @@ class BotaoIcone extends StatelessWidget {
   final Color? cor;
   final bool mostrar_progress;
   final IconData? icone;
+  final Color? cor_icone;
 
   BotaoIcone(
       {this.texto = "",
@@ -15,7 +16,8 @@ class BotaoIcone extends StatelessWidget {
       this.marcador_foco,
       this.cor,
       this.mostrar_progress = false,
-      this.icone = null});
+      this.icone = null,
+      this.cor_icone = Colors.black});
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +43,7 @@ class BotaoIcone extends StatelessWidget {
                       children: <Widget>[
                         Icon(icone,
                           size: 13,
+                          color: cor_icone,
                         ),
                         Text(
                           texto,
