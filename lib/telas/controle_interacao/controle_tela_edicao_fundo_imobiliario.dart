@@ -4,17 +4,21 @@ import 'package:fiisplan2/dominio/fundo_imobiliario.dart';
 import 'package:fiisplan2/dominio/usuario.dart';
 import 'package:flutter/material.dart';
 
+import '../../dominio/patrimonio.dart';
+
 class ControleTelaEdicaoFundoImobiliario {
   FundoImobiliario? fundo;
+  Patrimonio? patrimonio;
 
 
-  ControleTelaEdicaoFundoImobiliario(this.fundo);
+  ControleTelaEdicaoFundoImobiliario(this.fundo, this.patrimonio);
 
   // Controlador de formulário (para fazer validações)
   final formkey = GlobalKey<FormState>();
 
   final controlador_sigla = TextEditingController();
   final controlador_nome = TextEditingController();
+  final controlador_preco_medio = TextEditingController();
 
   // Controladores de foco
   final focus_nome = FocusNode();
@@ -32,6 +36,7 @@ class ControleTelaEdicaoFundoImobiliario {
       controlador_sigla.text = fundo!.sigla;
       controlador_nome.text = fundo!.nome;
       segmento_selecionado = fundo!.segmento;
+      controlador_preco_medio.text = patrimonio!.valor_medio.toString();
     }
   }
 
@@ -51,14 +56,16 @@ class ControleTelaEdicaoFundoImobiliario {
         }
       });
 
-
       // Se for uma atualização
     } else {
       fundo!.sigla = controlador_sigla.text;
       fundo!.nome = controlador_nome.text;
       fundo!.segmento = segmento_selecionado;
+      patrimonio!.valor_medio = double.parse(controlador_preco_medio.text);
 
       FabricaControladora.obterFundoImobiliarioControl().atualizarFundoImobiliario(fundo!);
+
+      FabricaControladora.obterPatrimonioControl().atualizarPrecoMedio(patrimonio!);
     }
   }
 

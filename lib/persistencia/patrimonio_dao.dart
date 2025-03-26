@@ -61,4 +61,12 @@ class PatrimonioDAO extends BaseDAO<Patrimonio>{
     return Sqflite.firstIntValue(list);
   }
 
+  void atualizar(Patrimonio patrimonio) async{
+    this.atualizarBase(
+        colunas: ["valor_medio"],
+        nomes_filtros: [ "id" ],
+        valores : [patrimonio.valor_medio, patrimonio.id]
+    );
+  }
+
 }

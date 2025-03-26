@@ -8,8 +8,4 @@ class FundoImobiliarioControl {
   void atualizarFundoImobiliario(FundoImobiliario fundo){
     _dao.atualizar(fundo);
   }
-
-  void inserirFundoImobiliario(FundoImobiliario fundo){
-
-  }
 }

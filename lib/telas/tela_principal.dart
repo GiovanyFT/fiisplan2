@@ -113,7 +113,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
         child: Icon(Icons.add),
         onPressed: () async {
           await _controle.irParaTelaEdicao(
-              context, TelaEdicaoFundoImobiliario(null));
+              context, TelaEdicaoFundoImobiliario(null, null));
         },
       ),
       drawer: MenuLateral(),
@@ -203,7 +203,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
               onPressed: () async {
                 pop(context);
                 _controle.irParaTelaEdicao(
-                    context, TelaEdicaoFundoImobiliario(patrimonio.fundo));
+                    context, TelaEdicaoFundoImobiliario(patrimonio.fundo, patrimonio));
               },
             ),
             TextButton(

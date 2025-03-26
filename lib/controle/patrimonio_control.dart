@@ -52,4 +52,8 @@ class PatrimonioControl{
   Future<int?> obterQuantidadePatrimonios(Usuario usuario) async{
     return _dao.obterQuantidade(usuario);
   }
+
+  void atualizarPrecoMedio(Patrimonio patrimonio){
+    _dao.atualizar(patrimonio);
+  }
 }
