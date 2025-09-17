@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    compileSdkVersion 34
+    compileSdkVersion 35
     namespace 'app.fiisplan.fiisplan2'
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
