@@ -47,7 +47,7 @@ dependencies:
   # Diretórios do sistema
   path_provider: ^2.0.5
   # Videos
-  video_player: ^2.2.5
+  video_player: ^2.10.0
   # Mapas
   google_maps_flutter: ^2.5.0
   # Endereço para Coordenadas
