@@ -48,7 +48,6 @@ class _CampoEdicaoDataState extends State<CampoEdicaoData> {
             obscureText: widget.passaword,
             controller: widget.controlador,
             keyboardType: widget.teclado,
-            textInputAction: TextInputAction.next,
             // Estilo da fonte
             style: TextStyle(
               fontSize: 25,
