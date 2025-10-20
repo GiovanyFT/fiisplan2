@@ -48,7 +48,6 @@ class _TelaEdicaoVendaState extends State<TelaEdicaoVenda> {
               CampoEdicaoData(
                 "Data de Venda:",
                 controlador: _controle.controlador_data_compra,
-                recebedor_foco: _controle.focus_valor_cota,
               ),
               SizedBox(
                 height: 10,

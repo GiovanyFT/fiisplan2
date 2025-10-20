@@ -47,7 +47,6 @@ class _TelaEdicaoDividendoState extends State<TelaEdicaoDividendo> {
               CampoEdicaoData(
                 "Data:",
                 controlador: _controle.controlador_data,
-                recebedor_foco: _controle.focus_valor,
               ),
               SizedBox(
                 height: 10,

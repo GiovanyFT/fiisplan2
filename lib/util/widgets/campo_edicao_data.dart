@@ -13,17 +13,13 @@ class CampoEdicaoData extends StatefulWidget {
   final TextEditingController? controlador;
   late FormFieldValidator<String> validador;
   final TextInputType teclado;
-  final FocusNode? marcador_foco;
-  final FocusNode? recebedor_foco;
 
   CampoEdicaoData(
       this.texto_label,
       {this.texto_dica = "",
         this.passaword = false,
         this.controlador = null,
-        this.teclado = TextInputType.text,
-        this.marcador_foco = null,
-        this.recebedor_foco = null}){
+        this.teclado = TextInputType.text}){
       this.validador = (String? text){
         if(text!.isEmpty)
           return "O campo '$texto_label' está vazio e necessita ser preenchido";
@@ -53,10 +49,6 @@ class _CampoEdicaoDataState extends State<CampoEdicaoData> {
             controller: widget.controlador,
             keyboardType: widget.teclado,
             textInputAction: TextInputAction.next,
-            focusNode: widget.marcador_foco,
-            onFieldSubmitted:(String text){
-              FocusScope.of(context).requestFocus(widget.recebedor_foco);
-            },
             // Estilo da fonte
             style: TextStyle(
               fontSize: 25,
