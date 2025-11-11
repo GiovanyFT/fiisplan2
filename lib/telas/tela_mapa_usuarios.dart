@@ -60,6 +60,7 @@ class _TelaMapaUsuariosState extends State<TelaMapaUsuarios> {
       children: <Widget>[
         Container(
           child: GoogleMap(
+            mapType: MapType.normal,
             initialCameraPosition: CameraPosition(
               target: _controle.obterPosicaoInicial(),
               zoom: 17,
