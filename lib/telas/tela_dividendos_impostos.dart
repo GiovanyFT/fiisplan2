@@ -33,11 +33,11 @@ class _TelaDividendosImpostosState extends State<TelaDividendosImpostos> {
             tabs: <Widget>[
               Tab(
                 text: "Dividendos",
-                icon: Icon(FontAwesomeIcons.handHoldingDollar),
+                icon: FaIcon(FontAwesomeIcons.handHoldingDollar),
               ),
               Tab(
                 text: "Impostos",
-                icon: Icon(FontAwesomeIcons.fileInvoiceDollar),
+                icon: FaIcon(FontAwesomeIcons.fileInvoiceDollar),
               ),
             ],
           ),

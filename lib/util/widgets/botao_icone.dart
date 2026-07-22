@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BotaoIcone extends StatelessWidget {
   final String texto;
@@ -7,7 +8,7 @@ class BotaoIcone extends StatelessWidget {
   final FocusNode? marcador_foco;
   final Color? cor;
   final bool mostrar_progress;
-  final IconData? icone;
+  final dynamic icone; // Accept both IconData and FaIconData
   final Color? cor_icone;
 
   BotaoIcone(
@@ -41,10 +42,9 @@ class BotaoIcone extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Icon(icone,
-                          size: 13,
-                          color: cor_icone,
-                        ),
+                        icone is IconData ?
+                          Icon(icone, size: 13, color: cor_icone) :
+                          FaIcon(icone, size: 13, color: cor_icone),
                         Text(
                           texto,
                           style: TextStyle(

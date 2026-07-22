@@ -56,11 +56,11 @@ class MyApp extends StatelessWidget {
         // Definindo padrão para ElevatedButton
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-            backgroundColor: MaterialStatePropertyAll<Color>(Colors.green),
+            backgroundColor: WidgetStatePropertyAll<Color>(Colors.green),
           )
         ),
         // Definindo padrào para TabBar
-        tabBarTheme: TabBarTheme(
+        tabBarTheme: TabBarThemeData(
           // Cor da Tab selecionada
           labelColor: Colors.white,
           // Cor de Tab não selecionada
