@@ -72,7 +72,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
               return [
                 PopupMenuItem(
                   child: TextButton(
-                    onPressed: () { push(context, TelaWebViewFundos("https://www.clubefii.com.br/fundo_imobiliario_lista")); },
+                    onPressed: () { push(context, TelaWebViewFundos("https://www.clubefii.com.br")); },
                     child: Text(
                       "Clube FII",
                       style: TextStyle(
